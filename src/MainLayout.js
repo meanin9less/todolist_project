@@ -11,8 +11,11 @@ export default function MainLayout() {
             <form onSubmit={(e) => {
                 e.preventDefault();
                 const inputItem = e.target.input.value;
-                dispatch(addList({ item: inputItem }));
-                navigate("/todolist");
+                if(inputItem){
+                    dispatch(addList({ item: inputItem }));
+                    e.target.input.value = "";
+                    navigate("/todolist");
+                };
             }}>
                 <input type="text" name="input"></input>
                 <button type="submit">추가</button>
